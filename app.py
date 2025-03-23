@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_cors import CORS
 
@@ -13,4 +15,5 @@ app.register_blueprint(user_bp)
 app.register_blueprint(address_bp)
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    port = int(os.environ.get("PORT", 10000))  # Default 10000 if not provided
+    app.run(host="0.0.0.0", port=port)
